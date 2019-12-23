@@ -1,0 +1,11 @@
+# Turn rewrite engine on
+Options +FollowSymlinks
+RewriteEngine on
+
+# map neat URL to internal URL
+RewriteRule ^tile/$   api.php?path=tile [nc,qsa]
+RewriteRule ^tile/([0-9]+)/$   api.php?path=tile&id=$1 [nc,qsa]
+RewriteRule ^alltile/$   api.php?path=alltile [nc,qsa]
+RewriteRule ^image/$         api.php?path=image [nc,qsa]
+RewriteRule ^image/(.+)/$   api.php?path=image&id=$1 [nc,qsa]
+RewriteRule ^auth/$   api.php?path=auth [nc,qsa]
