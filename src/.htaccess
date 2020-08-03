@@ -1,3 +1,25 @@
+# Deny access to .htaccess
+<Files .htaccess>
+Order allow,deny
+Deny from all
+</Files>
+
+# Deny access to files with .<filename>
+<FilesMatch "^\.">
+Order allow,deny
+Deny from all
+</FilesMatch>
+
+# Deny specific file access
+<FilesMatch "\.(ini|psd|log|sh)$">
+Order allow,deny
+Deny from all
+</FilesMatch>
+
+# Disable index
+Options -Indexes
+IndexIgnore *
+
 # Turn rewrite engine on
 Options +FollowSymlinks
 RewriteEngine on
@@ -8,4 +30,4 @@ RewriteRule ^tile/([0-9]+)/$   api.php?path=tile&id=$1 [nc,qsa]
 RewriteRule ^alltile/$   api.php?path=alltile [nc,qsa]
 RewriteRule ^image/$         api.php?path=image [nc,qsa]
 RewriteRule ^image/(.+)/$   api.php?path=image&id=$1 [nc,qsa]
-RewriteRule ^auth/$   api.php?path=auth [nc,qsa]
+#RewriteRule ^auth/$   api.php?path=auth [nc,qsa]

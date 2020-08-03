@@ -33,14 +33,6 @@ switch ($path) {
             getAlImagesDesc();
         }
         break;
-    case 'auth':
-        if (!compareClientToken()) {
-            http_response_code(401);
-            exit();
-        } else {
-            http_response_code(200);
-        }
-        break;
     default:
         http_response_code(400);
         echo "unable to find: " . $path;

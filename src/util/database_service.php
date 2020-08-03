@@ -1,12 +1,21 @@
 <?php
-require_once(__DIR__ . "/../config/database_config.php");
 require_once(__DIR__ . "/../config/header_config.php");
 
 function getFromDB($sql_query)
 {
+    // variable for db credentials
+    static $config;
+    if(!isset($config)) {
+        $config = parse_ini_file(__DIR__ . '/../../private/config.ini');
+        if(empty($config)) {
+            http_response_code(503);
+            return NULL;
+        }
+    }
+    
     // connected with database
-    $mysqli = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, 3306);
-    $mysqli->set_charset('utf-16');
+    $mysqli = mysqli_connect($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name'], 3306);
+    $mysqli->set_charset('utf-8');
 
     // check mySQL connection
     if ($mysqli->connect_errno) {
