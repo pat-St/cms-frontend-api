@@ -5,12 +5,16 @@ function getFromDB($sql_query)
 {
     // variable for db credentials
     static $config;
+
+    // check if database credentials is available
     if(!isset($config)) {
         $config = parse_ini_file(__DIR__ . '/../../private/config.ini');
-        if(empty($config)) {
-            http_response_code(503);
-            return NULL;
-        }
+    }
+
+    // check credentials is set
+    if(empty($config)) {
+        http_response_code(503);
+        return NULL;
     }
     
     // connected with database
@@ -27,11 +31,13 @@ function getFromDB($sql_query)
     if (!($stmt = $mysqli->query($sql_query))) {
         return NULL;
     }
+
     // Check closing DB connection
     if (!$mysqli->close()) {
         http_response_code(503);
         return NULL;
     }
+    
     // Check response is not empty
     if (empty($stmt)) {
         http_response_code(503);

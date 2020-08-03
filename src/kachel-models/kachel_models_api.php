@@ -59,7 +59,7 @@ function convertTilePayload($row)
     $description = utf8_encode($row[2]);
     $kachelType = (int)$row[3];
     $modalType = (int)$row[4];
-    $kachelSize = (int)$row[5];
+    $tileSizeType = (int)$row[5];
     $feWoContent = getFeWo($id);
     $infoText = getInfoText($id);
     $images = getImagesIdFromForeign($id, true);
@@ -72,7 +72,7 @@ function convertTilePayload($row)
         'images' => $images,
         'kachelType' => $kachelType,
         'modalType' => $modalType,
-        'kachelSize' => $kachelSize
+        'tileSizeType' => $tileSizeType
     );
     return $kachelJSON;
 }
