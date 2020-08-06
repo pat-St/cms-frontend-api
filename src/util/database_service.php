@@ -19,7 +19,7 @@ function getFromDB($sql_query)
     
     // connected with database
     $mysqli = mysqli_connect($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name'], 3306);
-    $mysqli->set_charset('utf-16');
+    $mysqli->set_charset('utf-8');
 
     // check mySQL connection
     if ($mysqli->connect_errno) {

@@ -9,8 +9,8 @@ header("Content-Type: application/json");
 function getKachels()
 {
     $sql_query_kachels = "
-SELECT t.ID, t.titleName, t.description, t.kachelType, t.modalType, t.tileSizeType, o.odernr 
-FROM t Tile, o TileOrder 
+SELECT t.ID, t.titleName, t.description, t.kachelType, t.modalType, t.tileSizeType, o.ordernr 
+FROM Tile t, TileOrder o 
 WHERE t.ID = o.fk_tile";
     $stmt = getFromDB($sql_query_kachels);
     if ($stmt == NULL) {
@@ -28,7 +28,7 @@ WHERE t.ID = o.fk_tile";
 
 function getAllKachelId()
 {
-    $sql_query_kachels = "SELECT id FROM t Tile";
+    $sql_query_kachels = "SELECT id FROM Tile";
     $stmt = getFromDB($sql_query_kachels);
     if ($stmt == NULL) {
         exit();
@@ -44,8 +44,8 @@ function getAllKachelId()
 function getKachelModelsFromId($Kid)
 {
     $sql_query_kachels = "
-SELECT t.ID, t.titleName, t.description, t.kachelType, t.modalType, t.tileSizeType, o.odernr 
-FROM t Tile, o TileOrder 
+SELECT t.ID, t.titleName, t.description, t.kachelType, t.modalType, t.tileSizeType, o.ordernr 
+FROM Tile t, TileOrder o 
 WHERE t.id='" . $Kid . "' 
 AND t.ID = o.fk_tile;";
     $stmt = getFromDB($sql_query_kachels);
