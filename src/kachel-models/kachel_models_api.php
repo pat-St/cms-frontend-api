@@ -9,7 +9,7 @@ header("Content-Type: application/json");
 function getKachels()
 {
     $sql_query_kachels = "
-SELECT t.ID, t.titleName, t.description, t.kachelType, t.modalType, t.tileSizeType, o.ordernr 
+SELECT t.ID, t.titleName, t.description, t.kachelType, t.modalType, t.tileSizeType, o.seqNum 
 FROM Tile t, TileOrder o 
 WHERE t.ID = o.fk_tile";
     $stmt = getFromDB($sql_query_kachels);
@@ -44,7 +44,7 @@ function getAllKachelId()
 function getKachelModelsFromId($Kid)
 {
     $sql_query_kachels = "
-SELECT t.ID, t.titleName, t.description, t.kachelType, t.modalType, t.tileSizeType, o.ordernr 
+SELECT t.ID, t.titleName, t.description, t.kachelType, t.modalType, t.tileSizeType, o.seqNum 
 FROM Tile t, TileOrder o 
 WHERE t.id='" . $Kid . "' 
 AND t.ID = o.fk_tile;";
@@ -67,7 +67,7 @@ function convertTilePayload($row)
     $kachelType = (int)$row[3];
     $modalType = (int)$row[4];
     $tileSizeType = (int)$row[5];
-    $orderNr = (int)$row[6];
+    $seqNum = (int)$row[6];
     $feWoContent = getFeWo($id);
     $infoText = getInfoText($id);
     $images = getImagesIdFromForeign($id, true);
@@ -81,7 +81,7 @@ function convertTilePayload($row)
         'kachelType' => $kachelType,
         'modalType' => $modalType,
         'tileSizeType' => $tileSizeType,
-        'orderNr' => $orderNr
+        'seqNum' => $seqNum
     );
     return $kachelJSON;
 }
