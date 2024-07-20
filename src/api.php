@@ -15,7 +15,7 @@ if (isset($_GET["path"])) {
 switch ($path) {
     case 'tile':
         if (isset($_GET["id"])) {
-            $id = utf8_encode($_GET["id"]);
+            $id = mb_convert_encoding($_GET["id"], 'UTF-8', 'ISO-8859-1');
             getKachelModelsFromId($id);
         } else {
             getKachels();
@@ -26,7 +26,7 @@ switch ($path) {
         break;
     case 'image':
         if (isset($_GET["id"])) {
-            $id = utf8_encode($_GET["id"]);
+            $id = mb_convert_encoding($_GET["id"], 'UTF-8', 'ISO-8859-1');
             getImagesWithID($id);
         } else {
             getAlImagesDesc();

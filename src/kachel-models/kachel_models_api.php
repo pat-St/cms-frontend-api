@@ -62,8 +62,8 @@ AND t.ID = o.fk_tile;";
 function convertTilePayload($row)
 {
     $id = (string)$row[0];
-    $titleName = utf8_encode($row[1]);
-    $description = utf8_encode($row[2]);
+    $titleName = $row[1];//mb_convert_encoding($row[1], 'UTF-8', 'ISO-8859-1');
+    $description = $row[2] ?? '';//mb_convert_encoding($row[2] ?? '', 'UTF-8', 'ISO-8859-1');
     $kachelType = (int)$row[3];
     $modalType = (int)$row[4];
     $tileSizeType = (int)$row[5];

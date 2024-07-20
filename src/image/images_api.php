@@ -3,9 +3,9 @@ require_once(__DIR__ . "/../util/database_service.php");
 
 function getImagesWithID($id)
 {
-    $desc = utf8_encode($id);
-//    $desc = str_replace('.webp', "", utf8_encode($desc));
-//    $desc = str_replace('.jpg', "", utf8_encode($desc));
+    $desc = $id; //mb_convert_encoding($id, 'UTF-8', 'ISO-8859-1');
+//    $desc = str_replace('.webp', "", mb_convert_encoding($desc));
+//    $desc = str_replace('.jpg', "", mb_convert_encoding($desc));
     $sql_query = "SELECT image FROM Image WHERE description='" . $desc . "';";
     $stmt = getFromDB($sql_query);
     if ($stmt == NULL) {
@@ -32,8 +32,8 @@ function getImagesIdFromForeign($id, $showKachel)
     $result = getFromDB($sql_query);
     $stack = array();
     while ($Irow = $result->fetch_row()) {
-        $desc = utf8_encode($Irow[0]);
-        $desc = preg_replace('/\s/', "_", utf8_encode($desc));
+        $desc = $Irow[0]; //mb_convert_encoding($Irow[0], 'UTF-8', 'ISO-8859-1');
+        $desc = preg_replace('/\s/', "_", $desc ); //mb_convert_encoding($desc, 'UTF-8', 'ISO-8859-1'));
         array_push($stack, $desc);
     }
     return $stack;
@@ -45,8 +45,8 @@ function getImagesIdInfo($id)
     $result = getFromDB($sql_query);
     $stack = array();
     while ($Irow = $result->fetch_row()) {
-        $desc = utf8_encode($Irow[0]);
-        $desc = preg_replace('/\s/', "_", utf8_encode($desc));
+        $desc = $Irow[0];// mb_convert_encoding($Irow[0], 'UTF-8', 'ISO-8859-1');
+        $desc = preg_replace('/\s/', "_", $desc);// mb_convert_encoding($desc, 'UTF-8', 'ISO-8859-1'));
         array_push($stack, $desc);
     }
     return $stack;
@@ -62,8 +62,8 @@ function getAlImagesDesc()
     }
     $stack = array();
     while ($Irow = $result->fetch_row()) {
-        $desc = utf8_encode($Irow[0]);
-        $desc = preg_replace('/\s/', "_", utf8_encode($desc));
+        $desc = $Irow[0]; //mb_convert_encoding($Irow[0], 'UTF-8', 'ISO-8859-1');
+        $desc = preg_replace('/\s/', "_", $desc); //mb_convert_encoding($desc, 'UTF-8', 'ISO-8859-1'));
         array_push($stack, $desc);
     }
     $payload = array('images' => $stack);

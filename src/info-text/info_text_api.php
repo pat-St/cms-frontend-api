@@ -14,9 +14,9 @@ WHERE fk_tile=".$id;
     }
     while($Frow = $result->fetch_row()){
         $Iid = (int)$Frow[0];
-        $headerText = utf8_encode($Frow[1]);
-        $contentText = utf8_encode($Frow[2]);
-        $link = utf8_encode($Frow[3]);
+        $headerText = $Frow[1];//mb_convert_encoding($Frow[1], 'UTF-8', 'ISO-8859-1');
+        $contentText = $Frow[2];// mb_convert_encoding($Frow[2], 'UTF-8', 'ISO-8859-1');
+        $link = $Frow[3];//mb_convert_encoding($Frow[3], 'UTF-8', 'ISO-8859-1');
         $images=getImagesIdInfo($Iid);
         $infoTextObject = array('id'=>$Iid,'headerText'=>$headerText,'contentText'=>$contentText,'link'=>$link,'images'=>$images);
         array_push($returnPayload,$infoTextObject);
