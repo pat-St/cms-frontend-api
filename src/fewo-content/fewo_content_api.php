@@ -73,10 +73,10 @@ function getApartmentPrice($id)
     $result = getFromDB($sql_query);
     $Fdescription = array();
     while ($row = $result->fetch_row()) {
-        $ApersonCount = $row[0];//mb_convert_encoding($row[0], 'UTF-8', 'ISO-8859-1');
-        $ApeakSeason = $row[1];// mb_convert_encoding($row[1], 'UTF-8', 'ISO-8859-1');
-        $AoffSeason = $row[2]; //mb_convert_encoding($row[2], 'UTF-8', 'ISO-8859-1');
-        $Anights = $row[3]; //mb_convert_encoding($row[3], 'UTF-8', 'ISO-8859-1');
+        $ApersonCount = $row[0];
+        $ApeakSeason = $row[1];
+        $AoffSeason = $row[2];
+        $Anights = $row[3];
         $eachDesc = array($ApersonCount, $AoffSeason, $ApeakSeason,$Anights);
         array_push($Fdescription, $eachDesc);
     }

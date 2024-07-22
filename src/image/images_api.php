@@ -62,8 +62,8 @@ function getAlImagesDesc()
     }
     $stack = array();
     while ($Irow = $result->fetch_row()) {
-        $desc = $Irow[0]; //mb_convert_encoding($Irow[0], 'UTF-8', 'ISO-8859-1');
-        $desc = preg_replace('/\s/', "_", $desc); //mb_convert_encoding($desc, 'UTF-8', 'ISO-8859-1'));
+        $desc = $Irow[0];
+        $desc = preg_replace('/\s/', "_", $desc);
         array_push($stack, $desc);
     }
     $payload = array('images' => $stack);
