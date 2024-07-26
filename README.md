@@ -32,4 +32,4 @@ and push the `src/` under `<root>/rest/`.
 
 ## Update
 
-Create new Composer Files run: `docker run -it -v ".:/app" -w "/app" composer:lts composer require --dev phpunit/phpunit`
+Create new Composer Files run: `docker run --rm -it -v ".:/app" -w "/app" composer:lts composer require --dev phpunit/phpunit`

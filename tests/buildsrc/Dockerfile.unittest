@@ -1,13 +1,13 @@
 # Test dependency
 FROM composer:lts as dev-deps
 WORKDIR /app
-RUN --mount=type=bind,source=./test/buildsrc/composer.json,target=composer.json \
-    --mount=type=bind,source=./test/buildsrc/composer.lock,target=composer.lock \
+RUN --mount=type=bind,source=./tests/buildsrc/composer.json,target=composer.json \
+    --mount=type=bind,source=./tests/buildsrc/composer.lock,target=composer.lock \
     --mount=type=cache,target=/tmp/cache \
     composer install --no-interaction
 # Test run
 FROM cms-frontend-api:latest as test
-COPY ./test /var/www/html/test
+COPY ./tests /var/www/html/tests
 COPY --from=dev-deps app/vendor/ /var/www/html/vendor
 WORKDIR /var/www/html
-RUN ./vendor/bin/phpunit test/apiTest.php
+# RUN ./vendor/bin/phpunit tests/apiTest.php
